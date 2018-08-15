@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+
+	<mvc:annotation-driven />
+
+	<context:annotation-config />
+
+
+	<context:component-scan base-package="mx.com.amx.wsb.yog.adminservices" />
+
+
+
+	<!-- Llamadas WS -->
+	<bean id="tipoVideoCallWS" class="mx.com.amx.wsb.yog.adminservices.ws.TipoVideoCallWS"></bean>
+	<bean id="tipoNotaCallWS" class="mx.com.amx.wsb.yog.adminservices.ws.TipoNotaCallWS"></bean>
+	<bean id="magazinesCallWS" class="mx.com.amx.wsb.yog.adminservices.ws.MagazinesCallWS"></bean>
+	<bean id="estatusNotaCallWS" class="mx.com.amx.wsb.yog.adminservices.ws.EstatusNotaCallWS"></bean>
+	<bean id="deportesCallWS" class="mx.com.amx.wsb.yog.adminservices.ws.DeportesCallWS"></bean>
+	<bean id="categoriasCallWS" class="mx.com.amx.wsb.yog.adminservices.ws.CategoriasCallWS"></bean>
+	
+	
+	<bean id="cmsGrupoCallWS" class="mx.com.amx.wsb.yog.adminservices.ws.CMSGrupoCallWS"></bean>
+	<bean id="cmsUsuarioCallWS" class="mx.com.amx.wsb.yog.adminservices.ws.CMSUsuarioCallWS"></bean>
+	
+	
+	<bean id="nNotaCallWS" class="mx.com.amx.wsb.yog.adminservices.ws.NNotaCallWS"></bean>
+	<bean id="hNotaCallWS" class="mx.com.amx.wsb.yog.adminservices.ws.HNotaCallWS"></bean>
+	
+	
+	<!-- Business Object -->
+		<bean id="notaBO" class="mx.com.amx.wsb.yog.adminservices.bo.NotaBO"></bean>
+
+	
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:general.properties</value>
+		</property>
+	</bean>
+
+
+
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="contentNegotiationManager" ref="cnManager" />
+	</bean>
+	<bean id="cnManager"
+		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="ignoreAcceptHeader" value="true" />
+		<property name="defaultContentType" value="application/json" />
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+				<entry key="html" value="text/html" />
+			</map>
+		</property>
+	</bean>
+
+
+
+	<!-- log4j setting -->
+	<bean id="log4jInitialization"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="org.springframework.util.Log4jConfigurer" />
+		<property name="targetMethod" value="initLogging" />
+		<property name="arguments">
+			<list>
+				<value>${log4j.properties.location}</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>
+
