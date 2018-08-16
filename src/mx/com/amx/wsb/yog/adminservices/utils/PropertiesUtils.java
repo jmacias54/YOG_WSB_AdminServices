@@ -40,6 +40,7 @@ public class PropertiesUtils {
 			
 			parametrosDTO.setAmbiente(ambiente);
 			parametrosDTO.setUrl(propsServer.getProperty(ambiente+".wsd.url"));
+			parametrosDTO.setDominio(propsServer.getProperty(ambiente+".dominio"));
 			
 			
 			parametrosDTO.setNnotaController(propsServer.getProperty("nnota"));

@@ -6,7 +6,7 @@ public class ParametrosDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-
+	private String dominio;
 	private String ambiente;
 	private String url;
 	
@@ -111,12 +111,15 @@ public class ParametrosDTO implements Serializable {
 	public void setUsuarioController(String usuarioController) {
 		this.usuarioController = usuarioController;
 	}
-	
-	
-	
+	public String getDominio() {
+		return dominio;
+	}
+	public void setDominio(String dominio) {
+		this.dominio = dominio;
+	}
 	@Override
 	public String toString() {
-		return "ParametrosDTO [ambiente=" + ambiente + ", url=" + url + ", nnotaController="
+		return "ParametrosDTO [dominio=" + dominio + ", ambiente=" + ambiente + ", url=" + url + ", nnotaController="
 				+ nnotaController + ", hnotaController=" + hnotaController + ", catalogos=" + catalogos
 				+ ", categoriaController=" + categoriaController + ", deportesController=" + deportesController
 				+ ", estatusNotaController=" + estatusNotaController + ", magazinesController=" + magazinesController
@@ -124,8 +127,9 @@ public class ParametrosDTO implements Serializable {
 				+ ", cms=" + cms + ", grupoController=" + grupoController + ", usuarioController=" + usuarioController
 				+ "]";
 	}
-
-
+	
+	
+	
 	
 	
 	
